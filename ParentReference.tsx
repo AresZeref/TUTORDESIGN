@@ -65,10 +65,10 @@ const ParentReference = () => {
                     mt={8}
                     colorScheme="blue"
                     width="full"
-                    borderRadius="20px"
+                    borderRadius="16px"
                     py={12}
                     fontSize="16px"
-                    px={20}
+                    px={25}
 
                 >
                     OK
