@@ -1,66 +1,76 @@
 import React from 'react';
-import { Box, Button, VStack, Heading, Center, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    VStack,
+    Heading,
+    Text,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+    useDisclosure
+} from '@chakra-ui/react';
 
-const ParentReminder = () => {
+const ParentConfirmation = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure();  // Hook to manage modal state
+
     return (
-        <Center height="100vh" bg="#e1e7f0">
-            <Box
-                bg="#e1e7f0"
-                rounded="md"
-                maxW="400px"
-                w="100%"
-                boxShadow="md"
-                overflow="hidden"
-                p={6}
-                textAlign="center"
-            >
-                <Heading
-                    as="h2"
-                    size="lg"
-                    color="red.600"
-                    mb={6}
-                >
-                    Reminder
-                </Heading>
+        <>
+            {/* Trigger Button */}
+            <Button onClick={onOpen}>Open Confirmation</Button>
 
-                <VStack spacing={4}>
-                    <Text fontSize="lg" fontWeight="bold" color="gray.700">
-                        Reference Number
-                    </Text>
-                    <Text fontSize="3xl" fontWeight="bold" color="black">
-                        83090839
-                    </Text>
-                    <Text fontSize="md" color="gray.600">
-                        Please take note of the reference number.
-                    </Text>
-                    <Text fontSize="md" color="gray.600">
-                        A confirmation is sent to your email at
-                    </Text>
-                    <Text fontSize="md" fontWeight="bold" color="blue.600">
-                        p.chinedo.528607@umindanao.edu.ph
-                    </Text>
-                    <Text fontSize="md" color="gray.600">
-                        Please pay on-site within
-                    </Text>
-                    <Text fontSize="lg" fontWeight="bold" color="black">
-                        1 WEEK
-                    </Text>
-                </VStack>
+            {/* Modal Structure */}
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    {/* Modal Header */}
+                    <ModalHeader bg="darkblue" color="white" textAlign="center">
+                        Confirmation
+                    </ModalHeader>
 
-                <Button
-                    mt={8}
-                    bg="white"
-                    color="black"
-                    borderRadius="full"
-                    px={8}
-                    py={4}
-                    fontWeight="bold"
-                >
-                    OK
-                </Button>
-            </Box>
-        </Center>
+                    {/* Modal Body */}
+                    <ModalBody bg="#f0f4f8">
+                        <VStack align="start" spacing={3} mt={6} w="100%" px={6}>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Name: <Text as="span" fontWeight="normal">Skye V. Galo</Text>
+                            </Text>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Sessions: <Text as="span" fontWeight="normal">Mon-Wed-Fri</Text>
+                            </Text>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Session Type: <Text as="span" fontWeight="normal">One-on-One</Text>
+                            </Text>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Subject: <Text as="span" fontWeight="normal">Math</Text>
+                            </Text>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Date Start: <Text as="span" fontWeight="normal">July 15, 2024</Text>
+                            </Text>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Time: <Text as="span" fontWeight="normal">4:30 - 5:30 PM</Text>
+                            </Text>
+                            <Text fontSize="16px" fontWeight="bold">
+                                Rate: <Text as="span" fontWeight="normal">₱2,500.00</Text>
+                            </Text>
+                        </VStack>
+                    </ModalBody>
+
+                    {/* Modal Footer */}
+                    <ModalFooter display="flex" justifyContent="space-evenly">
+                        <Button variant="outline" onClick={onClose} bg="blue.200" borderRadius="14px" fontSize="18px">
+                            Back
+                        </Button>
+                        <Button bg="#ffa500" borderRadius="14px" fontSize="18px">
+                            Next
+                        </Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+        </>
     );
 };
 
-export default ParentReminder;
+export default ParentConfirmation;
